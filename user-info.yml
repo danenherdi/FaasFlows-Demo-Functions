@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://gateway.openfaas:8080
+functions:
+  user-info:
+    lang: golang-flow
+    handler: ./services/user-info
+    image: danenherdi/user-info:0.1.0

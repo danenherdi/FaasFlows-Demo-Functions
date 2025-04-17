@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://gateway.openfaas:8080
+functions:
+  friends:
+    lang: golang-flow
+    handler: ./services/friends
+    image: danenherdi/friends:0.1.0

@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://gateway.openfaas:8080
+functions:
+  ride-recommend:
+    lang: golang-flow
+    handler: ./services/ride-recommend
+    image: danenherdi/ride-recommend:0.1.0

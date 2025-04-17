@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://gateway.openfaas:8080
+functions:
+  hello-world:
+    lang: golang-flow
+    handler: ./services/hello-world
+    image: danenherdi/hello-world:0.1.0

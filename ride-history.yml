@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://gateway.openfaas:8080
+functions:
+  ride-history:
+    lang: golang-flow
+    handler: ./services/ride-history
+    image: danenherdi/ride-history:0.1.0
