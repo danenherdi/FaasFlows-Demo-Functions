@@ -26,6 +26,12 @@ export default function () {
         origin: origin
     });
 
-    http.post(url, payload, params);
+    const response = http.post(url, payload, params);
+
+    check(response, {
+        'status is 200': (r) => r.status === 200,
+        'response body has content': (r) => r.body.length > 0,
+    });
+    
     sleep(1);
 }

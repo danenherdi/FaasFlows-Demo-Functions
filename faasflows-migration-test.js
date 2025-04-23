@@ -64,7 +64,12 @@ export default function () {
         },
     };
 
-    http.post(url, payload, params);
+    const response = http.post(url, payload, params);
+
+    check(response, {
+        'status is 200': (r) => r.status === 200,
+        'response body has content': (r) => r.body.length > 0,
+    });
 
     // Sleep for a short duration to control the request rate
     sleep(0.01);
