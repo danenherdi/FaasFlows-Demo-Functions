@@ -7,3 +7,5 @@ functions:
     lang: golang-flow
     handler: ./services/friends
     image: danenherdi/friends:0.1.0
+    annotations:
+      com.openfaas.image-pull-policy: "Never"
