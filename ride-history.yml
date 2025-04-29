@@ -7,3 +7,9 @@ functions:
     lang: golang-flow
     handler: ./services/ride-history
     image: danenherdi/ride-history:0.1.0
+    limits:
+      cpu: 150m          # 0.15 core per function
+      memory: 200Mi      # 200MB per function
+    requests:
+      cpu: 30m           # 0.03 core per function
+      memory: 50Mi       # 50MB per function
