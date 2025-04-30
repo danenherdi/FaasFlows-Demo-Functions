@@ -12,7 +12,12 @@ export const options = {
 export default function () {
     const validUserIds = [10, 20, 30, 40];
     const userId = validUserIds[Math.floor(Math.random() * validUserIds.length)];
-    const origin = `${(Math.random() * 90).toFixed(6)},${(Math.random() * 90).toFixed(6)}`;
+
+    // Generate random origin coordinates
+    const origin = {
+        lat: parseFloat((Math.random() * 90).toFixed(6)),
+        lon: parseFloat((Math.random() * 90).toFixed(6))
+    };
 
     const url = 'http://gateway.openfaas:8080/flow/homepage';
     const params = {
