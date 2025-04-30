@@ -29,13 +29,11 @@ export const options = {
 };
 
 export default function () {
-    const validUserIds = [10, 20, 30, 40];
-    const userId = validUserIds[Math.floor(Math.random() * validUserIds.length)];
+    const userId = 10;
 
-    // Generate random origin coordinates
     const origin = {
-        lat: parseFloat((Math.random() * 90).toFixed(6)),
-        lon: parseFloat((Math.random() * 90).toFixed(6))
+        lat: 10.10,
+        lon: 40.40
     };
 
     // Randomly select an endpoint based on the defined probabilities
@@ -44,21 +42,21 @@ export default function () {
 
     if (random < HOMEPAGE_PROBABILITY) {
         // Homepage request (100 RPS)
-        url = 'http://gateway.openfaas:8080/flow/homepage';
+        url = 'http://127.0.0.1:8080/flow/homepage';
         payload = JSON.stringify({
             user_id: userId,
             origin: origin
         });
     } else if (random < HOMEPAGE_PROBABILITY + RIDE_HISTORY_PROBABILITY) {
         // Ride History request (200 RPS)
-        url = 'http://gateway.openfaas:8080/flow/ride-history';
+        url = 'http://127.0.0.1:8080/flow/ride-history';
         payload = JSON.stringify({
             user_id: userId,
             origin: origin
         });
     } else {
         // Friends request (50 RPS)
-        url = 'http://gateway.openfaas:8080/flow/friends';
+        url = 'http://127.0.0.1:8080/flow/friends';
         payload = JSON.stringify({
             user_id: userId,
             origin: origin
