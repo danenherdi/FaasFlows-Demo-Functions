@@ -23,6 +23,8 @@ func ExecFlow(request FlowInput) ([]byte, error) {
 	if !ok || lastRideResponse == nil {
 		return nil, errors.New("response of last_ride_of_passenger is required to process")
 	}
+	// Debug log raw data
+	fmt.Printf("Raw lastRideResponse.Data: %s\n", string(lastRideResponse.Data))
 	// Unmarshal lastRide from child function
 	var lastRideWrapper map[string]json.RawMessage
 	err := json.Unmarshal(lastRideResponse.Data, &lastRideWrapper)
@@ -41,6 +43,8 @@ func ExecFlow(request FlowInput) ([]byte, error) {
 	if !ok || userInfoResponse == nil {
 		return nil, errors.New("response of user_info_of_passenger is required to process")
 	}
+	// Debug log raw data
+	fmt.Printf("Raw userInfoResponse.Data: %s\n", string(userInfoResponse.Data))
 	// Unmarshal userInfo from child function
 	var userInfoWrapper map[string]json.RawMessage
 	err = json.Unmarshal(userInfoResponse.Data, &userInfoWrapper)
