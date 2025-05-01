@@ -89,7 +89,5 @@ func ExecFlow(request FlowInput) ([]byte, error) {
 	}
 
 	// Return the last ride of the user in JSON format
-	return json.Marshal(map[string]interface{}{
-		"response": lastRide,
-	})
+	return json.Marshal(lastRide)
 }
