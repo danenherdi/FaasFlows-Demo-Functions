@@ -23,9 +23,15 @@ func ExecFlow(request FlowInput) ([]byte, error) {
 	if !ok || lastRideResponse == nil {
 		return nil, errors.New("response of last_ride_of_passenger is required to process")
 	}
-	err := json.Unmarshal(lastRideResponse.Data, &lastRide)
+	// Unmarshal lastRide from child function
+	var lastRideWrapper map[string]json.RawMessage
+	err := json.Unmarshal(lastRideResponse.Data, &lastRideWrapper)
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("error in unmarshalling: %s", err))
+		return nil, fmt.Errorf("failed to unmarshal lastRide wrapper: %w", err)
+	}
+	err = json.Unmarshal(lastRideWrapper["response"], &lastRide)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal lastRide: %w", err)
 	}
 	fmt.Printf("%+v\n", lastRide)
 
@@ -35,9 +41,15 @@ func ExecFlow(request FlowInput) ([]byte, error) {
 	if !ok || userInfoResponse == nil {
 		return nil, errors.New("response of user_info_of_passenger is required to process")
 	}
-	err = json.Unmarshal(userInfoResponse.Data, &userInfo)
+	// Unmarshal userInfo from child function
+	var userInfoWrapper map[string]json.RawMessage
+	err = json.Unmarshal(userInfoResponse.Data, &userInfoWrapper)
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("error in unmarshalling: %s", err))
+		return nil, fmt.Errorf("failed to unmarshal userInfo wrapper: %w", err)
+	}
+	err = json.Unmarshal(userInfoWrapper["response"], &userInfo)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal userInfo: %w", err)
 	}
 	fmt.Printf("%+v\n", userInfo)
 
