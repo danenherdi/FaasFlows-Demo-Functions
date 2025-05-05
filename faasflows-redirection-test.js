@@ -17,7 +17,7 @@ export default function () {
         lon: 40.40
     };
 
-    const url = 'http://gateway.openfaas:8080/flow/homepage';
+    const url = 'http://127.0.0.1:8080/flow/homepage';
     const params = {
         headers: {
             'Content-Type': 'application/json',
